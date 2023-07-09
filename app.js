@@ -170,7 +170,7 @@ solveBtn.addEventListener("click", (e) => {
     );
   }
 
-  // Helper Function
+  // Helper Functions
   function updateNumber(obj, num) {
     num = Number(num.toFixed(3));
     obj.innerHTML = num;
