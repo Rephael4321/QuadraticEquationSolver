@@ -53,11 +53,6 @@ const denominatorContent = document.querySelectorAll(".denominator-content");
 const firstAnswer = document.querySelector("#final-answer-one");
 const secondAnswer = document.querySelector("#final-answer-two");
 
-// Delete on prod
-inputA.value = 1;
-inputB.value = 1;
-inputC.value = 1;
-
 solveBtn.addEventListener("click", (e) => {
   let a = parseFloat(inputA.value);
   let b = parseFloat(inputB.value);
