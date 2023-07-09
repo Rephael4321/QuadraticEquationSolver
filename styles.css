@@ -32,39 +32,11 @@ section {
   margin-left: 50px;
 }
 
-/* Stage One */
-.fraction-bar-stage-one {
+.fraction-bar {
   border: 1px black solid;
 }
 
-.denominator-content-stage-one {
-  margin: auto;
-}
-
-/* Stage Two */
-.fraction-bar-stage-two {
-  border: 1px black solid;
-}
-
-.denominator-content-stage-two {
-  margin: auto;
-}
-
-/* Stage Three */
-.fraction-bar-stage-three {
-  border: 1px black solid;
-}
-
-.denominator-content-stage-three {
-  margin: auto;
-}
-
-/* Final Stage*/
-.final-fraction-bar-stage {
-  border: 1px black solid;
-}
-
-.final-denominator-content-stage {
+.denominator-content {
   margin: auto;
 }
 

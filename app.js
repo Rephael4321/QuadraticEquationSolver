@@ -4,8 +4,7 @@ const inputA = document.querySelector("#a-value");
 const inputB = document.querySelector("#b-value");
 const inputC = document.querySelector("#c-value");
 
-// Stage One Spans
-const spanNumeratorOne = document.querySelector("#numerator-one");
+// Stage One Numbers
 const spanBOuterOne = document.querySelector("#b-coefficient-outer-one");
 const spanBInnerOne = document.querySelector("#b-coefficient-inner-one");
 const spanInnerNegativeOne = document.querySelector("#inner-negative-sign-one");
@@ -13,173 +12,147 @@ const spanAInner = document.querySelector("#a-coefficient-inner");
 const spanC = document.querySelector("#c-coefficient");
 const spanOuterNegativeOne = document.querySelector("#outer-negative-sign-one");
 const spanAOuter = document.querySelector("#a-coefficient-outer");
-// Stage One Bars
-const fractionBarOne = document.querySelector(".fraction-bar-stage-one");
-const denominatorBoxOne = document.querySelector(".denominator-box-stage-one");
-const denominatorContentOne = document.querySelector(
-  ".denominator-content-stage-one"
-);
-
-// Stage Two Spans
-const spanNumeratorTwo = document.querySelector("#numerator-two");
+// Stage Two Numbers
 const spanBOuterTwo = document.querySelector("#b-coefficient-outer-two");
 const spanBInnerTwo = document.querySelector("#b-coefficient-inner-two");
 const spanInnerNegativeTwo = document.querySelector("#inner-negative-sign-two");
 const spanRightSideInner = document.querySelector("#right-side-inner");
 const spanOuterNegativeTwo = document.querySelector("#outer-negative-sign-two");
 const spanDenominatorTwo = document.querySelector("#denominator-two");
-// Stage Two Bars
-const fractionBarTwo = document.querySelector(".fraction-bar-stage-two");
-const denominatorBoxTwo = document.querySelector(".denominator-box-stage-two");
-const denominatorContentTwo = document.querySelector(
-  ".denominator-content-stage-two"
-);
-
-// Stage Three Spans
-const spanNumeratorThree = document.querySelector("#numerator-three");
+// Stage Three Numbers
 const spanBThree = document.querySelector("#b-coefficient-three");
 const spanDelta = document.querySelector("#delta");
 const spanDenominatorThree = document.querySelector("#denominator-three");
-// Stage Three Bars
-const fractionBarThree = document.querySelector(".fraction-bar-stage-three");
-const denominatorBoxThree = document.querySelector(
-  ".denominator-box-stage-three"
-);
-const denominatorContentThree = document.querySelector(
-  ".denominator-content-stage-three"
-);
-
-// Stage Four Spans
+// Stage Four Numbers
 const spanBFour = document.querySelector("#b-coefficient-four");
 const spanRootedDeltaFour = document.querySelector("#rooted-delta-four");
 const spanDenominatorFour = document.querySelector("#denominator-four");
-// Stage Five Spans
+// Stage Five Numbers
 const spanBFive = document.querySelector("#b-coefficient-five");
 const spanRootedDeltaFive = document.querySelector("#rooted-delta-five");
 const spanDenominatorFive = document.querySelector("#denominator-five");
-// Stage Six Spans
+// Stage Six Numbers
 const spanBSix = document.querySelector("#b-coefficient-six");
 const spanRootedDeltaSix = document.querySelector("#rooted-delta-six");
 const spanDenominatorSix = document.querySelector("#denominator-six");
 
-// Final Stage Spans and Bars
-const spanNumeratorFinal = document.querySelectorAll(".final-numerator");
-const finalFractionBar = document.querySelectorAll(".final-fraction-bar-stage");
-const finalDenominatorBox = document.querySelectorAll(
-  ".final-denominator-box-stage"
-);
-const finalDenominatorContent = document.querySelectorAll(
-  ".final-denominator-content-stage"
-);
+// Visuals Width
+const spanNumerator = document.querySelectorAll(".numerator");
+const fractionBar = document.querySelectorAll(".fraction-bar");
+const denominatorBox = document.querySelectorAll(".denominator-box");
+const denominatorContent = document.querySelectorAll(".denominator-content");
 
 // Final Answers
 const firstAnswer = document.querySelector("#final-answer-one");
 const secondAnswer = document.querySelector("#final-answer-two");
 
 // Initialized Data - Delete on Production
-inputA.value = "1";
-inputB.value = "-6";
-inputC.value = "8";
+inputA.value = "0";
+inputB.value = "1";
+inputC.value = "1";
 
 button.addEventListener("click", (e) => {
-  let a = parseInt(inputA.value);
-  let b = parseInt(inputB.value);
-  let c = parseInt(inputC.value);
+  let a = parseFloat(inputA.value);
+  let b = parseFloat(inputB.value);
+  let c = parseFloat(inputC.value);
 
-  if (!a) a = 0;
-  if (!b) b = 0;
-  if (!c) c = 0;
+  if (!a) {
+    a = 0;
+    inputA.value = 0;
+  }
+  if (!b) {
+    b = 0;
+    inputB.value = 0;
+  }
+  if (!c) {
+    c = 0;
+    inputC.value = 0;
+  }
 
-  // Set Spans One
-  spanBOuterOne.innerHTML = b * -1;
-  spanBInnerOne.innerHTML = b;
+  if (a === 0) {
+    firstAnswer.innerHTML = Number((-c / b).toFixed(3));
+    secondAnswer.innerHTML = Number((-c / b).toFixed(3));
+  }
+
+  // Set Number of Stage One
+  updateNumber(spanBOuterOne, b * -1);
+  updateNumber(spanBInnerOne, b);
   spanInnerNegativeOne.innerHTML = a * c < 0 ? "+" : "-";
-  spanAInner.innerHTML = a < 0 ? a * -1 : a;
-  spanC.innerHTML = c < 0 ? c * -1 : c;
+  updateNumber(spanAInner, a < 0 ? a * -1 : a);
+  updateNumber(spanC, c < 0 ? c * -1 : c);
   spanOuterNegativeOne.innerHTML = a < 0 ? "-" : "";
-  spanAOuter.innerHTML = a < 0 ? a * -1 : a;
-  // Set Bars One
-  const fractionBarWidthOne = spanNumeratorOne.offsetWidth;
-  fractionBarOne.style.width = `${fractionBarWidthOne}px`;
-  denominatorBoxOne.style.width = `${fractionBarWidthOne}px`;
-  denominatorContentOne.style.width = `${denominatorContentOne.offsetWidth}px`;
-  denominatorContentOne.style.display = "block";
+  updateNumber(spanAOuter, a < 0 ? a * -1 : a);
 
-  // // Set Spans Two
-  spanBOuterTwo.innerHTML = b * -1;
-  spanBInnerTwo.innerHTML = b * b;
+  // // Set Number of Stage Two
+  updateNumber(spanBOuterTwo, b * -1);
+  updateNumber(spanBInnerTwo, b * b);
   spanInnerNegativeTwo.innerHTML = a * c < 0 ? "+" : "-";
-  spanRightSideInner.innerHTML = b * c < 0 ? 4 * b * c * -1 : 4 * b * c;
+  updateNumber(spanRightSideInner, b * c < 0 ? 4 * b * c * -1 : 4 * b * c);
   spanOuterNegativeTwo.innerHTML = a < 0 ? "-" : "";
-  spanDenominatorTwo.innerHTML = a < 0 ? 2 * a * -1 : 2 * a;
-  // Set Bars Two
-  const fractionBarWidthTwo = spanNumeratorTwo.offsetWidth;
-  fractionBarTwo.style.width = `${fractionBarWidthTwo}px`;
-  denominatorBoxTwo.style.width = `${fractionBarWidthTwo}px`;
-  denominatorContentTwo.style.width = `${denominatorContentTwo.offsetWidth}px`;
-  denominatorContentTwo.style.display = "block";
+  updateNumber(spanDenominatorTwo, a < 0 ? 2 * a * -1 : 2 * a);
 
-  // Set Spans Three
-  spanBThree.innerHTML = b * -1;
-  spanDelta.innerHTML = b * b - 4 * a * c;
-  spanDenominatorThree.innerHTML = 2 * a;
-  // Set Bars Three
-  const fractionBarWidthThree = spanNumeratorThree.offsetWidth;
-  fractionBarThree.style.width = `${fractionBarWidthThree}px`;
-  denominatorBoxThree.style.width = `${fractionBarWidthThree}px`;
-  denominatorContentThree.style.width = `${denominatorContentThree.offsetWidth}px`;
-  denominatorContentThree.style.display = "block";
+  // Set Number of Stage Three
+  updateNumber(spanBThree, b * -1);
+  updateNumber(spanDelta, b * b - 4 * a * c);
+  updateNumber(spanDenominatorThree, 2 * a);
 
-  // Set Spans Four
-  spanBFour.innerHTML = b * -1;
+  // Set Number of Stage Four
+  updateNumber(spanBFour, b * -1);
   spanRootedDeltaFour.innerHTML =
     b * b - 4 * a * c < 0
-      ? Math.round(Math.sqrt(4 * a * c - b * b) * 1000) / 1000 + "i"
-      : Math.round(Math.sqrt(b * b - 4 * a * c));
-  spanDenominatorFour.innerHTML = 2 * a;
+      ? Number(Math.sqrt(4 * a * c - b * b).toFixed(3)) + "i"
+      : Number(Math.sqrt(b * b - 4 * a * c).toFixed(3));
+  updateNumber(spanDenominatorFour, 2 * a);
 
-  // Set Spans Five
-  spanBFive.innerHTML = b * -1;
+  // Set Number of Stage Five
+  updateNumber(spanBFive, b * -1);
   spanRootedDeltaFive.innerHTML =
     b * b - 4 * a * c < 0
-      ? Math.round(Math.sqrt(4 * a * c - b * b) * 1000) / 1000 + "i"
-      : Math.round(Math.sqrt(b * b - 4 * a * c));
-  spanDenominatorFive.innerHTML = 2 * a;
+      ? Number(Math.sqrt(4 * a * c - b * b).toFixed(3)) + "i"
+      : Number(Math.sqrt(b * b - 4 * a * c).toFixed(3));
+  updateNumber(spanDenominatorFive, 2 * a);
 
-  // Set Spans Six
-  spanBSix.innerHTML = b * -1;
+  // Set Number of Stage Six
+  updateNumber(spanBSix, b * -1);
   spanRootedDeltaSix.innerHTML =
     b * b - 4 * a * c < 0
-      ? Math.round(Math.sqrt(4 * a * c - b * b) * 1000) / 1000 + "i"
-      : Math.round(Math.sqrt(b * b - 4 * a * c));
-  spanDenominatorSix.innerHTML = 2 * a;
+      ? Number(Math.sqrt(4 * a * c - b * b).toFixed(3)) + "i"
+      : Number(Math.sqrt(b * b - 4 * a * c).toFixed(3));
+  updateNumber(spanDenominatorSix, 2 * a);
 
-  // Set Final Bars
-  for (let i = 0; i < 3; i++) {
-    const finalFractionBarWidth = spanNumeratorFinal[i].offsetWidth;
-    finalFractionBar[i].style.width = `${finalFractionBarWidth}px`;
-    finalDenominatorBox[i].style.width = `${finalFractionBarWidth}px`;
-    finalDenominatorContent[
+  // Set Visuals width
+  for (let i = 0; i < 6; i++) {
+    const finalFractionBarWidth = spanNumerator[i].offsetWidth;
+    fractionBar[i].style.width = `${finalFractionBarWidth}px`;
+    denominatorBox[i].style.width = `${finalFractionBarWidth}px`;
+    denominatorContent[
       i
-    ].style.width = `${finalDenominatorContent[i].offsetWidth}px`;
-    finalDenominatorContent[i].style.display = "block";
+    ].style.width = `${denominatorContent[i].offsetWidth}px`;
+    denominatorContent[i].style.display = "block";
   }
 
   // Set Final Answers
   if (b * b - 4 * a * c < 0) {
-    firstAnswer.innerHTML = `(${Math.round((-b / (2 * a)) * 1000) / 1000}, ${
-      Math.round((Math.sqrt(4 * a * c - b * b) / (2 * a)) * 1000) / 1000
-    }i)`;
-    secondAnswer.innerHTML = `(${Math.round((-b / (2 * a)) * 1000) / 1000}, ${
-      Math.round(-(Math.sqrt(4 * a * c - b * b) / (2 * a)) * 1000) / 1000
-    }i)`;
+    firstAnswer.innerHTML = `(${Number((-b / (2 * a)).toFixed(3))}, ${Number(
+      (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(3)
+    )}i)`;
+    secondAnswer.innerHTML = `(${Number((-b / (2 * a)).toFixed(3))}, ${Number(
+      (-Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(3)
+    )}i)`;
   } else {
-    firstAnswer.innerHTML =
-      Math.round(((-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a)) * 1000) / 1000;
-    secondAnswer.innerHTML =
-      Math.round(((-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a)) * 1000) / 1000;
+    firstAnswer.innerHTML = Number(
+      ((-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a)).toFixed(3)
+    );
+    secondAnswer.innerHTML = Number(
+      ((-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a)).toFixed(3)
+    );
   }
 
-  console.log(a, b, c);
+  // Helper Function
+  function updateNumber(obj, num) {
+    num = Number(num.toFixed(3));
+    obj.innerHTML = num;
+  }
+
   e.preventDefault();
 });
