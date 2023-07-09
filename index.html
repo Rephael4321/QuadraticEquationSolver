@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <form>
+        <input type="number" id="a-value" />
+        <label for="a-value">X<sup>2</sup></label>
+        <input type="number" id="b-value" />
+        <label for="b-value">X</label>
+        <input type="number" id="c-value" />
+        <button>Solve</button>
+      </form>
+      <!-- Stage 1 -->
+      <section>
+        <div class="wrapper">
+          <span id="numerator-one">
+            <span id="b-coefficient-outer-one"></span>
+            &plusmn;&nbsp;&radic;((<span id="b-coefficient-inner-one"></span>)
+            <sup>2</sup>&nbsp;<span id="inner-negative-sign-one"></span>
+            4&times;<span id="a-coefficient-inner"></span>&times;<span
+              id="c-coefficient"
+            ></span
+            >)
+          </span>
+          <div class="fraction-bar-stage-one"></div>
+          <div class="denominator-box-stage-one">
+            <span class="denominator-content-stage-one"
+              ><span id="outer-negative-sign-one"></span>2&times;<span
+                id="a-coefficient-outer"
+              ></span
+            ></span>
+          </div>
+        </div>
+      </section>
+      <!-- Stage 2 -->
+      <section>
+        <div class="wrapper">
+          <span id="numerator-two"
+            ><span id="b-coefficient-outer-two"></span
+            >&nbsp;&plusmn;&nbsp;&radic;(<span
+              id="b-coefficient-inner-two"
+            ></span
+            >&nbsp;<span id="inner-negative-sign-two"></span>&nbsp;<span
+              id="right-side-inner"
+            ></span
+            >)
+          </span>
+          <div class="fraction-bar-stage-two"></div>
+          <div class="denominator-box-stage-two">
+            <span class="denominator-content-stage-two"
+              ><span id="outer-negative-sign-two"></span
+              ><span id="denominator-two"></span
+            ></span>
+          </div>
+        </div>
+      </section>
+      <!-- Stage 3 -->
+      <section>
+        <div class="wrapper">
+          <span id="numerator-three"
+            ><span id="b-coefficient-three"></span
+            >&nbsp;&plusmn;&nbsp;&radic;(<span id="delta"></span>)</span
+          >
+          <div class="fraction-bar-stage-three"></div>
+          <div class="denominator-box-stage-three">
+            <span class="denominator-content-stage-three">
+              <span id="denominator-three"></span
+            ></span>
+          </div>
+        </div>
+      </section>
+      <!-- Stage 4 -->
+      <section>
+        <div class="wrapper">
+          <span class="final-numerator"
+            ><span id="b-coefficient-four"></span>&nbsp;&plusmn;&nbsp;<span
+              id="rooted-delta-four"
+            ></span>
+          </span>
+          <div class="final-fraction-bar-stage"></div>
+          <div class="final-denominator-box-stage">
+            <span class="final-denominator-content-stage"
+              ><span id="denominator-four"></span
+            ></span>
+          </div>
+        </div>
+      </section>
+      <!-- Stage 5 -->
+      <section class="final-answer">
+        <span class="push-right">X<sub>1</sub>&nbsp;=</span>
+        <div class="final-wrapper">
+          <span class="final-numerator"
+            ><span id="b-coefficient-five"></span>&nbsp;+&nbsp;<span
+              id="rooted-delta-five"
+            ></span
+          ></span>
+          <div class="final-fraction-bar-stage"></div>
+          <div class="final-denominator-box-stage">
+            <span class="final-denominator-content-stage"
+              ><span id="denominator-five"></span
+            ></span>
+          </div>
+        </div>
+        <span> =&nbsp;<span id="final-answer-one"></span></span>
+      </section>
+      <!-- Stage 6 -->
+      <section class="final-answer">
+        <span class="push-right">X<sub>2</sub>&nbsp;=</span>
+        <div class="final-wrapper">
+          <span class="final-numerator"
+            ><span id="b-coefficient-six"></span>&nbsp;-&nbsp;<span
+              id="rooted-delta-six"
+            ></span
+          ></span>
+          <div class="final-fraction-bar-stage"></div>
+          <div class="final-denominator-box-stage">
+            <span class="final-denominator-content-stage"
+              ><span id="denominator-six"></span
+            ></span>
+          </div>
+        </div>
+        <span> =&nbsp;<span id="final-answer-two"></span></span>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
