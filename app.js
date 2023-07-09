@@ -1,8 +1,15 @@
+// Warning Message
+const warningMessage = document.querySelector(".warning-message");
+const closeBtn = document.querySelector("#close-btn");
+
 // Form Elements
-const button = document.querySelector("button");
+const solveBtn = document.querySelector("#solve-btn");
 const inputA = document.querySelector("#a-value");
 const inputB = document.querySelector("#b-value");
 const inputC = document.querySelector("#c-value");
+
+// Wrapper Elements
+const outerWrapperDives = document.querySelectorAll(".wrapper-outer");
 
 // Stage One Numbers
 const spanBOuterOne = document.querySelector("#b-coefficient-outer-one");
@@ -46,15 +53,17 @@ const denominatorContent = document.querySelectorAll(".denominator-content");
 const firstAnswer = document.querySelector("#final-answer-one");
 const secondAnswer = document.querySelector("#final-answer-two");
 
-// Initialized Data - Delete on Production
-inputA.value = "0";
-inputB.value = "1";
-inputC.value = "1";
+// Delete on prod
+inputA.value = 1;
+inputB.value = 1;
+inputC.value = 1;
 
-button.addEventListener("click", (e) => {
+solveBtn.addEventListener("click", (e) => {
   let a = parseFloat(inputA.value);
   let b = parseFloat(inputB.value);
   let c = parseFloat(inputC.value);
+
+  console.log(a, b, c);
 
   if (!a) {
     a = 0;
@@ -67,6 +76,18 @@ button.addEventListener("click", (e) => {
   if (!c) {
     c = 0;
     inputC.value = 0;
+  }
+
+  if (checkSize(a) || checkSize(b) || checkSize(c)) {
+    warningMessage.style.visibility = "visible";
+    warningMessage.style.position = "static";
+    a = truncNumber(a);
+    console.log(a);
+    inputA.value = a;
+    b = truncNumber(b);
+    inputB.value = b;
+    c = truncNumber(c);
+    inputC.value = c;
   }
 
   if (a === 0) {
@@ -125,6 +146,7 @@ button.addEventListener("click", (e) => {
     const finalFractionBarWidth = spanNumerator[i].offsetWidth;
     fractionBar[i].style.width = `${finalFractionBarWidth}px`;
     denominatorBox[i].style.width = `${finalFractionBarWidth}px`;
+    denominatorContent[i].style.display = "inline";
     denominatorContent[
       i
     ].style.width = `${denominatorContent[i].offsetWidth}px`;
@@ -154,5 +176,31 @@ button.addEventListener("click", (e) => {
     obj.innerHTML = num;
   }
 
+  function checkSize(num) {
+    if (num > 99999 || num < -9999) {
+      return true;
+    }
+  }
+
+  function truncNumber(num) {
+    if (num > 99999) {
+      return 99999;
+    } else if (num < -9999) {
+      return -9999;
+    } else {
+      return num;
+    }
+  }
+
+  // Display Sections after first solution
+  for (let obj of outerWrapperDives) {
+    obj.style.visibility = "visible";
+  }
+
   e.preventDefault();
+});
+
+closeBtn.addEventListener("click", (e) => {
+  warningMessage.style.visibility = "hidden";
+  warningMessage.style.position = "absolute";
 });

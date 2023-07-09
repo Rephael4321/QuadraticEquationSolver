@@ -4,6 +4,39 @@ body {
   background-color: beige;
 }
 
+main {
+  text-align: center;
+}
+
+.warning-message {
+  visibility: hidden;
+  position: absolute;
+  background-color: rgba(255, 74, 74, 0.5);
+  color: white;
+  max-width: 400px;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+
+.warning-text {
+  margin: 10px;
+}
+
+#close-btn {
+  font-size: 24px;
+  color: white;
+  background-color: transparent;
+  border: 1px white solid;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  transition: color 300ms, background-color 300ms;
+}
+
+#close-btn:hover {
+  color: white;
+  background-color: rgba(255, 74, 74, 0.5);
+}
+
 form {
   font-size: 16px;
   border: 1px gray solid;
@@ -15,7 +48,17 @@ form {
 }
 
 input {
+  font-size: 18px;
   max-width: 74px;
+  border: 1px gray solid;
+  border-radius: 5px;
+}
+
+#solve-btn {
+  font-size: 18px;
+  background-color: white;
+  border: 1px gray solid;
+  border-radius: 5px;
 }
 
 section {
@@ -27,9 +70,19 @@ section {
   margin: 10px auto;
 }
 
-.wrapper {
+.wrapper-outer {
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper-inner {
+  margin: 0 7px;
   max-width: 291px;
-  margin-left: 50px;
+}
+
+.push-right {
+  margin-left: 30px;
 }
 
 .fraction-bar {
@@ -38,17 +91,4 @@ section {
 
 .denominator-content {
   margin: auto;
-}
-
-.final-answer {
-  display: flex;
-  align-items: center;
-}
-
-.final-wrapper {
-  margin: 0 7px;
-}
-
-.push-right {
-  margin-left: 30px;
 }
