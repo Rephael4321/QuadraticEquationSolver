@@ -1,17 +1,17 @@
-// Warning Message
+// Warning Message #1
 const warningMessage = document.querySelector(".warning-message");
 const closeBtn = document.querySelector("#close-btn");
 
-// Form Elements
+// Form Elements #2
 const solveBtn = document.querySelector("#solve-btn");
 const inputA = document.querySelector("#a-value");
 const inputB = document.querySelector("#b-value");
 const inputC = document.querySelector("#c-value");
 
-// Wrapper Elements
+// Wrapper Elements #3
 const outerWrapperDives = document.querySelectorAll(".wrapper-outer");
 
-// Stage One Numbers
+// Stage One Numbers and Symbols #4
 const spanBOuterOne = document.querySelector("#b-coefficient-outer-one");
 const spanBInnerOne = document.querySelector("#b-coefficient-inner-one");
 const spanInnerNegativeOne = document.querySelector("#inner-negative-sign-one");
@@ -19,47 +19,53 @@ const spanAInner = document.querySelector("#a-coefficient-inner");
 const spanC = document.querySelector("#c-coefficient");
 const spanOuterNegativeOne = document.querySelector("#outer-negative-sign-one");
 const spanAOuter = document.querySelector("#a-coefficient-outer");
-// Stage Two Numbers
+
+// Stage Two Numbers and Symbols #5
 const spanBOuterTwo = document.querySelector("#b-coefficient-outer-two");
 const spanBInnerTwo = document.querySelector("#b-coefficient-inner-two");
 const spanInnerNegativeTwo = document.querySelector("#inner-negative-sign-two");
 const spanRightSideInner = document.querySelector("#right-side-inner");
 const spanOuterNegativeTwo = document.querySelector("#outer-negative-sign-two");
 const spanDenominatorTwo = document.querySelector("#denominator-two");
-// Stage Three Numbers
+
+// Stage Three Numbers and Symbols #6
 const spanBThree = document.querySelector("#b-coefficient-three");
 const spanDelta = document.querySelector("#delta");
 const spanDenominatorThree = document.querySelector("#denominator-three");
-// Stage Four Numbers
+
+// Stage Four Numbers and Symbols #7
 const spanBFour = document.querySelector("#b-coefficient-four");
 const spanRootedDeltaFour = document.querySelector("#rooted-delta-four");
 const spanDenominatorFour = document.querySelector("#denominator-four");
-// Stage Five Numbers
+
+// Stage Five Numbers and Symbols #8
 const spanBFive = document.querySelector("#b-coefficient-five");
 const spanRootedDeltaFive = document.querySelector("#rooted-delta-five");
 const spanDenominatorFive = document.querySelector("#denominator-five");
-// Stage Six Numbers
+
+// Stage Six Numbers and Symbols #9
 const spanBSix = document.querySelector("#b-coefficient-six");
 const spanRootedDeltaSix = document.querySelector("#rooted-delta-six");
 const spanDenominatorSix = document.querySelector("#denominator-six");
 
-// Visuals Width
+// Visuals Width #10
 const spanNumerator = document.querySelectorAll(".numerator");
 const fractionBar = document.querySelectorAll(".fraction-bar");
 const denominatorBox = document.querySelectorAll(".denominator-box");
 const denominatorContent = document.querySelectorAll(".denominator-content");
 
-// Final Answers
+// Final Answers #11
 const firstAnswer = document.querySelector("#final-answer-one");
 const secondAnswer = document.querySelector("#final-answer-two");
 
+// Solve
 solveBtn.addEventListener("click", (e) => {
+  // Get input values
   let a = parseFloat(inputA.value);
   let b = parseFloat(inputB.value);
   let c = parseFloat(inputC.value);
 
-  console.log(a, b, c);
-
+  // If no input, set to 0
   if (!a) {
     a = 0;
     inputA.value = 0;
@@ -73,11 +79,11 @@ solveBtn.addEventListener("click", (e) => {
     inputC.value = 0;
   }
 
+  // If input exceeds size, pop alert and fix size
   if (checkSize(a) || checkSize(b) || checkSize(c)) {
     warningMessage.style.visibility = "visible";
     warningMessage.style.position = "static";
     a = truncNumber(a);
-    console.log(a);
     inputA.value = a;
     b = truncNumber(b);
     inputB.value = b;
@@ -85,12 +91,7 @@ solveBtn.addEventListener("click", (e) => {
     inputC.value = c;
   }
 
-  if (a === 0) {
-    firstAnswer.innerHTML = Number((-c / b).toFixed(3));
-    secondAnswer.innerHTML = Number((-c / b).toFixed(3));
-  }
-
-  // Set Number of Stage One
+  // Fill numbers of stage one
   updateNumber(spanBOuterOne, b * -1);
   updateNumber(spanBInnerOne, b);
   spanInnerNegativeOne.innerHTML = a * c < 0 ? "+" : "-";
@@ -99,7 +100,7 @@ solveBtn.addEventListener("click", (e) => {
   spanOuterNegativeOne.innerHTML = a < 0 ? "-" : "";
   updateNumber(spanAOuter, a < 0 ? a * -1 : a);
 
-  // // Set Number of Stage Two
+  // Fill numbers of stage two
   updateNumber(spanBOuterTwo, b * -1);
   updateNumber(spanBInnerTwo, b * b);
   spanInnerNegativeTwo.innerHTML = a * c < 0 ? "+" : "-";
@@ -107,12 +108,12 @@ solveBtn.addEventListener("click", (e) => {
   spanOuterNegativeTwo.innerHTML = a < 0 ? "-" : "";
   updateNumber(spanDenominatorTwo, a < 0 ? 2 * a * -1 : 2 * a);
 
-  // Set Number of Stage Three
+  // Fill numbers of stage three
   updateNumber(spanBThree, b * -1);
   updateNumber(spanDelta, b * b - 4 * a * c);
   updateNumber(spanDenominatorThree, 2 * a);
 
-  // Set Number of Stage Four
+  // Fill numbers of stage four
   updateNumber(spanBFour, b * -1);
   spanRootedDeltaFour.innerHTML =
     b * b - 4 * a * c < 0
@@ -120,7 +121,7 @@ solveBtn.addEventListener("click", (e) => {
       : Number(Math.sqrt(b * b - 4 * a * c).toFixed(3));
   updateNumber(spanDenominatorFour, 2 * a);
 
-  // Set Number of Stage Five
+  // Fill numbers of stage five
   updateNumber(spanBFive, b * -1);
   spanRootedDeltaFive.innerHTML =
     b * b - 4 * a * c < 0
@@ -128,7 +129,7 @@ solveBtn.addEventListener("click", (e) => {
       : Number(Math.sqrt(b * b - 4 * a * c).toFixed(3));
   updateNumber(spanDenominatorFive, 2 * a);
 
-  // Set Number of Stage Six
+  // Fill numbers of stage six
   updateNumber(spanBSix, b * -1);
   spanRootedDeltaSix.innerHTML =
     b * b - 4 * a * c < 0
@@ -136,19 +137,17 @@ solveBtn.addEventListener("click", (e) => {
       : Number(Math.sqrt(b * b - 4 * a * c).toFixed(3));
   updateNumber(spanDenominatorSix, 2 * a);
 
-  // Set Visuals width
+  // Set visuals width
   for (let i = 0; i < 6; i++) {
     const finalFractionBarWidth = spanNumerator[i].offsetWidth;
     fractionBar[i].style.width = `${finalFractionBarWidth}px`;
     denominatorBox[i].style.width = `${finalFractionBarWidth}px`;
-    denominatorContent[i].style.display = "inline";
     denominatorContent[
       i
     ].style.width = `${denominatorContent[i].offsetWidth}px`;
-    denominatorContent[i].style.display = "block";
   }
 
-  // Set Final Answers
+  // Fill final answers
   if (b * b - 4 * a * c < 0) {
     firstAnswer.innerHTML = `(${Number((-b / (2 * a)).toFixed(3))}, ${Number(
       (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(3)
@@ -165,7 +164,7 @@ solveBtn.addEventListener("click", (e) => {
     );
   }
 
-  // Helper Functions
+  // Helper functions
   function updateNumber(obj, num) {
     num = Number(num.toFixed(3));
     obj.innerHTML = num;
@@ -187,7 +186,7 @@ solveBtn.addEventListener("click", (e) => {
     }
   }
 
-  // Display Sections after first solution
+  // Display sections after first solution
   for (let obj of outerWrapperDives) {
     obj.style.visibility = "visible";
   }
@@ -195,6 +194,7 @@ solveBtn.addEventListener("click", (e) => {
   e.preventDefault();
 });
 
+// Close warning message
 closeBtn.addEventListener("click", (e) => {
   warningMessage.style.visibility = "hidden";
   warningMessage.style.position = "absolute";

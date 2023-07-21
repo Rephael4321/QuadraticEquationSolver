@@ -1,3 +1,4 @@
+/* Init */
 body {
   font-family: "Open Sans", sans-serif;
   margin-top: 25px;
@@ -8,6 +9,7 @@ main {
   text-align: center;
 }
 
+/* Warning Message */
 .warning-message {
   visibility: hidden;
   position: absolute;
@@ -35,8 +37,10 @@ main {
 #close-btn:hover {
   color: white;
   background-color: rgba(255, 74, 74, 0.5);
+  cursor: pointer;
 }
 
+/* Input Form */
 form {
   font-size: 16px;
   border: 1px gray solid;
@@ -61,6 +65,11 @@ input {
   border-radius: 5px;
 }
 
+#solve-btn:hover {
+  cursor: pointer;
+}
+
+/* Stages 1-6 */
 section {
   position: relative;
   border: 1px gray solid;
@@ -76,13 +85,13 @@ section {
   align-items: center;
 }
 
+.push-right {
+  margin-left: 30px;
+}
+
 .wrapper-inner {
   margin: 0 7px;
   max-width: 291px;
-}
-
-.push-right {
-  margin-left: 30px;
 }
 
 .fraction-bar {

@@ -3,17 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+    <!-- CSS Link -->
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <!-- Title -->
+    <title>Quadratic Equation Solver</title>
   </head>
   <body>
     <main>
+      <!-- Warning Message -->
       <div class="warning-message">
         <h2 class="warning-text">
           Only numbers between<br />
@@ -21,12 +25,13 @@
         </h2>
         <button id="close-btn">Close</button>
       </div>
+      <!-- Input Form -->
       <form>
-        <input type="number" step="0.01" min="-9999" max="99999" id="a-value" />
+        <input type="number" step="0.01" id="a-value" />
         <label for="a-value">X<sup>2</sup></label>
-        <input type="number" step="0.01" maxlength="5" id="b-value" />
+        <input type="number" step="0.01" id="b-value" />
         <label for="b-value">X</label>
-        <input type="number" step="0.01" maxlength="5" id="c-value" />
+        <input type="number" step="0.01" id="c-value" />
         = 0
         <button id="solve-btn">Solve</button>
       </form>
@@ -46,8 +51,8 @@
             </span>
             <div class="fraction-bar"></div>
             <div class="denominator-box">
-              <span class="denominator-content"
-                ><span id="outer-negative-sign-one"></span>2&times;<span
+              <span class="denominator-content">
+                <span id="outer-negative-sign-one"></span>2&times;<span
                   id="a-coefficient-outer"
                 ></span
               ></span>
@@ -158,7 +163,7 @@
         </div>
       </section>
     </main>
-
+    <!-- JS Link -->
     <script src="app.js"></script>
   </body>
 </html>
